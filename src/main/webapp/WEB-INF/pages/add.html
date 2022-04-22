@@ -10,15 +10,15 @@
 
 <h2>User Info</h2>
 
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:method="POST" th:action="@{/}" th:object="${user}">
     <label for="Name">Enter Name</label>
     <input type="text" th:field="*{name}" id="Name"/>
     <br/>
     <label for="Last Name">Enter Last Name</label>
     <input type="text" th:field="*{lastName}" id="Last Name"/>
     <br/>
-    <label for="Age">Enter Age</label>
-    <input type="text" th:field="*{age}" id="Age"/>
+    <label for="Email">Enter Email</label>
+    <input type="text" th:field="*{email}" id="Email"/>
     <br/>
     <br/>
     <input type="submit" value="Create new user"/>

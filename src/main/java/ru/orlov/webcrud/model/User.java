@@ -16,16 +16,16 @@ public class User {
     @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "age")
-    private Byte age;
+    @Column(name = "email")
+    private String email;
 
     public User() {
     }
 
-    public User(String name, String lastName, Byte age) {
+    public User(String name, String lastName, String email) {
         this.name = name;
         this.lastName = lastName;
-        this.age = age;
+        this.email = email;
     }
 
     public Long getId() {
@@ -52,11 +52,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Byte getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAge(Byte age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

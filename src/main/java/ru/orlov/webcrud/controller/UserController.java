@@ -9,33 +9,38 @@ import ru.orlov.webcrud.service.UserService;
 
 @Controller
 
-@RequestMapping("/users")
 public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping()
+    @GetMapping()
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "allUsers";
     }
 
-    @RequestMapping("/add")
+    @GetMapping("/{id}")
+    public String showUser(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("singleUser", userService.getByIdUser(id));
+        return "singleUser";
+    }
+
+    @GetMapping ("/add")
     public String addNewUser(Model model) {
         model.addAttribute("user", new User());
-        return "userInfo";
+        return "add";
     }
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
         userService.addUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    @DeleteMapping("/")
+    public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
@@ -44,10 +49,10 @@ public class UserController {
         return "editUser";
     }
 
-    @PatchMapping("/edit")
+    @PutMapping()
     public String doEdit(@ModelAttribute("updateUser") User newUser) {
         userService.editUser(newUser);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
 }
